@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+    img{
+        width: 100px;
+        height: 138px;
+    }
+    #test1{
+        display : block;
+    }
+    .cardSwap{
+        display : none;
+        flex : 1;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    }
+</style>
+</head>
+<body>
+
+    <img class ="card" id="ComputerCard1" src="./image/trump/Back.PNG">
+    <img class ="card" id="ComputerCard2" src="./image/trump/Back.PNG">
+    <img class ="card" id="ComputerCard3" src="./image/trump/Back.PNG">
+    <img class ="card" id="ComputerCard4" src="./image/trump/Back.PNG">
+    <img class ="card" id="ComputerCard5" src="./image/trump/Back.PNG">
+    <br>
+    <img class ="card" id="PlayerCard1" src="./image/trump/Back.PNG">
+    <img class ="card" id="PlayerCard2" src="./image/trump/Back.PNG">
+    <img class ="card" id="PlayerCard3" src="./image/trump/Back.PNG">
+    <img class ="card" id="PlayerCard4" src="./image/trump/Back.PNG">
+    <img class ="card" id="PlayerCard5" src="./image/trump/Back.PNG">
+    <button onclick="run()" id="cardOpen">카드깡</button>
+    <br>
+
+    <button class="cardSwap" id="Card1">1번 카드 선택</button>
+    <button class="cardSwap" id="Card2">2번 카드 선택</button>
+    <button class="cardSwap" id="Card3">3번 카드 선택</button>
+    <button class="cardSwap" id="Card4">4번 카드 선택</button>
+    <button class="cardSwap" id="Card5">5번 카드 선택</button>
+    <button class="cardSwap" id="Swaping">바꾸기</button>
+
+    <div id="chat">ㅎㅇㅎㅇ이거보임?</div>
+    <div id="chat2">ㅎㅇㅎㅇ이거보임?</div>
+</body>
+<script>
+    var PlayerCard = [{"set":-1,"number":-1},{"set":-1,"number":-1},{"set":-1,"number":-1},{"set":-1,"number":-1},{"set":-1,"number":-1}];//플레이어가 뽑은 카드
+    var ComputerCard=[{"set":-1,"number":-1},{"set":-1,"number":-1},{"set":-1,"number":-1},{"set":-1,"number":-1},{"set":-1,"number":-1}];//컴퓨터가 뽑은 카드
+    var deck =[];
+    var CardCountingOfPlayer=[0];//0~12까지는 카드 번호의 갯수를. 13~16까지는 카드 모양의 갯수를 셈
+    var CardCountingOfComputer=[0];
+    document.getElementById("Card1").addEventListener("click", SwapingCardChoose);
+    document.getElementById("Card2").addEventListener("click", SwapingCardChoose);
+    document.getElementById("Card3").addEventListener("click", SwapingCardChoose);
+    document.getElementById("Card4").addEventListener("click", SwapingCardChoose);
+    document.getElementById("Card5").addEventListener("click", SwapingCardChoose);
+    function SwapingCardChoose()
+    {
+        var temp = this.innerHTML;
+        var temp2=temp.substr(0,1);
+
+        if(this.innerHTML===temp2+"번 카드 선택")
+        {
+            this.innerHTML=temp2+"번 카드 선택 해제";
+        }
+        else if(this.innerHTML===temp2+"번 카드 선택 해제")
+        {
+            this.innerHTML=temp2+"번 카드 선택";
+        }
+
+        temp2=Number(temp2);
+        alert(temp2);
+    }
+    function run(){
+        
+        initDeck(deck);
+        initCounting(CardCountingOfPlayer);
+        initCounting(CardCountingOfComputer);
+        randomCard(deck, PlayerCard, "PlayerCard");
+        randomCard(deck, ComputerCard, "ComputerCard");
+        CardCounting(PlayerCard,CardCountingOfPlayer);
+        CardCounting(ComputerCard,CardCountingOfComputer);
+        visibleButton();
+        
+    }
+    function initDeck(self){
+        var temp = self.length;
+        for(var i=0;i<temp;i++)
+        {
+            self.pop();
+        }
+        for(var i=0;i<52;i++)
+        {
+            self.push(0);
+        }
+    }
+    function initCounting(self)
+    {
+        var temp = self.length;
+        for(var i=0;i<temp;i++)
+        {
+            self.pop();
+
+        }
+        for(var i=0;i<17;i++)
+        {
+            self.push(0);
+        }
+    }
+    function randomCard(deck, self, name)
+    {
+        var index=1;
+        var equalFlag;
+        while(index<6){
+            equalFlag= false;
+            var card = Math.floor(Math.random()*52+1);//1~52
+            var setOfCard=0;   
+            if(deck[card-1]===1)//지금 뽑은 카드가 이전에 뽑은 카드와 같으면 다시뽑기.
+            {
+                continue;
+            }
+            else
+            {
+                deck[card-1]=1;
+            }
+            while(card>=14){
+                card=card-13;
+                setOfCard=setOfCard+1;
+            }
+            var route;
+             if(setOfCard===0)//스페이드
+             {
+                route = "./image/trump/spade/"+card+".PNG";
+            }
+            else if(setOfCard===1)//다이아몬드
+            {
+                route = "./image/trump/diamond/"+card+".PNG";
+            }
+            else if(setOfCard===2)//클로버
+            {
+                route = "./image/trump/clover/"+card+".PNG";
+            }
+            else if(setOfCard===3)//하트
+            {
+                route = "./image/trump/heart/"+card+".PNG";
+            }
+            document.getElementById(name+index).src=route;
+            self[index-1].set=setOfCard;
+            self[index-1].number=card;
+            index=index+1;
+        }
+    }
+    function CardCounting(deck, cardcounting)
+    {
+        for(var i=0;i<5;i++)
+        {
+            cardcounting[deck[i].number - 1]= cardcounting[deck[i].number - 1]+1;
+            if(deck[i].set==0)
+            {
+                cardcounting[13]+=1;
+            }
+            else if(deck[i].set==1)
+            {
+                cardcounting[14]+=1;
+            }
+            else if(deck[i].set==2)
+            {
+                cardcounting[15]+=1;
+            }
+            else if(deck[i].set==3)
+            {
+                cardcounting[16]+=1;
+            }
+        }
+    }
+    function visibleButton(){
+        for(var i=0;i<5;i++)
+        {
+            var temp = document.getElementById("Card"+(i+1));
+            temp.style.display='inline';
+        }
+    }
+
+    
+</script>
+</html>

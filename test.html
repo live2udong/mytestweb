@@ -1,48 +1,37 @@
-<input type="checkbox">
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EEKNL76H43"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-EEKNL76H43');
-</script>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/7T7r_oSp0SE?si=kidCVbV0eMcYhmIv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<div id="disqus_thread"></div>
-<script>
-    /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-    /*
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://web1-8gorisp17h.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/65085a02b1aaa13b7a7780ff/1hak9v6ur';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
-<!--End of Tawk.to Script-->
-
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+  div{
+    border:10px solid green;
+    
+  }
+  @media(min-width:800px)
+  {
+    div{display:none;}
+  }
+  </style>
+  </head>
+  <body>
+    <h1>비교연산자 테스트 ===</h1>
+    <button id="test" onclick="main()">테스틍</button>
+    <div id="testing"></div>
+  </body>
+  <script>
+    var PlayerCard = [{"set":-1,"number":-1},{"set":-1,"number":-1},{"set":-1,"number":-1},{"set":-1,"number":-1},{"set":-1,"number":-1}];
+    function main(){
+      run(PlayerCard);
+    }
+    function run(self){
+      var index=0;
+      for(var i=0; i<PlayerCard.length;i++)
+      {
+        document.write(self[i].set+"<br>");
+        document.write(self[i].number+"<br><br>");
+        document.write();
+      }
+    }
+  </script>
+  </body></html>
