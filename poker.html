@@ -38,10 +38,12 @@
     <button class="cardSwap" id="Card3">3번 카드 선택</button>
     <button class="cardSwap" id="Card4">4번 카드 선택</button>
     <button class="cardSwap" id="Card5">5번 카드 선택</button>
-    <button class="cardSwap" id="Swaping">바꾸기</button>
+    <button class="cardSwap" id="Swaping" onclick="swap()">결정</button>
 
     <div id="chat">ㅎㅇㅎㅇ이거보임?</div>
     <div id="chat2">ㅎㅇㅎㅇ이거보임?</div>
+    <div id="chat3">ㅎㅇㅎㅇ이거보임?</div>
+    <div id="chat4">ㅎㅇㅎㅇ이거보임?</div>
 </body>
 <script>
     var PlayerCard = [{"set":-1,"number":-1},{"set":-1,"number":-1},{"set":-1,"number":-1},{"set":-1,"number":-1},{"set":-1,"number":-1}];//플레이어가 뽑은 카드
@@ -49,6 +51,10 @@
     var deck =[];
     var CardCountingOfPlayer=[0];//0~12까지는 카드 번호의 갯수를. 13~16까지는 카드 모양의 갯수를 셈
     var CardCountingOfComputer=[0];
+    var ChooseCard=[0,0,0,0,0];
+    var PlayerHandRanking=-1;
+    var ComputerHandRanking=-1;
+
     document.getElementById("Card1").addEventListener("click", SwapingCardChoose);
     document.getElementById("Card2").addEventListener("click", SwapingCardChoose);
     document.getElementById("Card3").addEventListener("click", SwapingCardChoose);
@@ -58,30 +64,68 @@
     {
         var temp = this.innerHTML;
         var temp2=temp.substr(0,1);
-
+        temp2=Number(temp2);
         if(this.innerHTML===temp2+"번 카드 선택")
         {
             this.innerHTML=temp2+"번 카드 선택 해제";
+            
+            ChooseCard[temp2-1]=1;
         }
         else if(this.innerHTML===temp2+"번 카드 선택 해제")
         {
             this.innerHTML=temp2+"번 카드 선택";
+            ChooseCard[temp2-1]=0;
         }
-
-        temp2=Number(temp2);
-        alert(temp2);
+    }
+    function ViewCard(cardlist)
+    {
+        var temp ="플레이어가 가지고 있는 카드는 : ";
+        for(var i=0;i<cardlist.length;i++)
+        {
+            temp= temp + cardlist[i].set+", "+cardlist[i].number+"와";
+        }
+        document.getElementById("chat3").innerHTML=temp;
     }
     function run(){
         
         initDeck(deck);
         initCounting(CardCountingOfPlayer);
         initCounting(CardCountingOfComputer);
-        randomCard(deck, PlayerCard, "PlayerCard");
-        randomCard(deck, ComputerCard, "ComputerCard");
+        randomCard(deck, PlayerCard, "PlayerCard",[1,1,1,1,1]);
+        randomCard(deck, ComputerCard, "ComputerCard",[1,1,1,1,1]);
         CardCounting(PlayerCard,CardCountingOfPlayer);
         CardCounting(ComputerCard,CardCountingOfComputer);
+        PlayerHandRanking = RankCalcul(CardCountingOfPlayer,PlayerHandRanking);
+        ComputerHandRanking=RankCalcul(CardCountingOfComputer,ComputerHandRanking);
+        ViewRank("chat2",PlayerHandRanking);
+        ViewRank("chat", ComputerHandRanking);
         visibleButton();
+    }
+    function ReturnCardToDeck(choosecard, playercard,deck)
+    {
         
+        for(var i=0;i<5;i++)
+        {
+            if(choosecard[i]===1)//카드를 덱에 다시 집어넣기.
+            {
+                var number = Number(playercard[i].number);
+                var set = Number(playercard[i].set);
+                var temp= set*13+number-1;
+                deck[temp]=0;
+            }
+        }
+    }
+    function swap()
+    {
+        //선택한 사용자의 카드를 회수하여 덱에 다시 넣고, 다시 뽑기하는 과정이 필요. 이후 승패 판정
+        ReturnCardToDeck(ChooseCard,PlayerCard,deck);
+        randomCard(deck, PlayerCard, "PlayerCard",ChooseCard);
+        CardCounting(PlayerCard,CardCountingOfPlayer);
+        PlyaerHandRanking=-1;
+        PlayerHandRanking = RankCalcul(CardCountingOfPlayer,PlayerHandRanking);
+        document.getElementById("chat4").innerHTML="PlayerHandRanking = "+PlayerHandRanking;
+        ViewRank("chat2",PlayerHandRanking);
+        ViewCard(PlayerCard);
     }
     function initDeck(self){
         var temp = self.length;
@@ -107,12 +151,13 @@
             self.push(0);
         }
     }
-    function randomCard(deck, self, name)
+    function randomCard(deck, self, name, arr)
     {
         var index=1;
         var equalFlag;
         while(index<6){
-            equalFlag= false;
+            if(arr[index-1]==1)
+            {equalFlag= false;
             var card = Math.floor(Math.random()*52+1);//1~52
             var setOfCard=0;   
             if(deck[card-1]===1)//지금 뽑은 카드가 이전에 뽑은 카드와 같으면 다시뽑기.
@@ -146,12 +191,16 @@
             }
             document.getElementById(name+index).src=route;
             self[index-1].set=setOfCard;
-            self[index-1].number=card;
+            self[index-1].number=card;}
             index=index+1;
         }
     }
     function CardCounting(deck, cardcounting)
     {
+        for(var i=0;i<cardcounting.length;i++)
+        {
+            cardcounting[i]=0;
+        }
         for(var i=0;i<5;i++)
         {
             cardcounting[deck[i].number - 1]= cardcounting[deck[i].number - 1]+1;
@@ -173,11 +222,152 @@
             }
         }
     }
+    function RankCalcul(cardcounting, checkrank)//1 : 탑, 2 : 원페어, 3 : 투페어, 4 : 트리플, 5 : 스트레이트, 6 : 플러쉬, 7 : 풀하우스, 8 : 포카드, 9 : 스트레이트 플러쉬, 10 : 로얄 스트레이트 플러쉬.
+    {
+        checkrank=-1;
+        for(var i=13;i<=16;i++)//플러시가 있을때 계산.
+        {
+            if(cardcounting[i]===5)//플러시가 있음.
+            {
+                if(cardcounting[12]===1&&cardcounting[11]===1&&cardcounting[10]===1&&cardcounting[9]===1&&cardcounting[0]===1)//로티플
+                {
+                    if(checkrank<10)
+                    {
+                        checkrank=10;
+                    }
+                }
+                if(checkrank<10)//로티플이 아님
+                {
+                    for(var j=0;j<=12;j++)//12가 k
+                    {
+                        if(cardcounting[j]===1&&cardcounting[(j+1)%13]===1&&cardcounting[(j+2)%13]===1&&cardcounting[(j+3)%13]===1&&cardcounting[(j+4)%13]===1)//스트레이트인지 확인.
+                        {
+                            if(checkrank<10)//스트레이트 플러시
+                            {
+                                checkrank=9;
+                            }
+                        }
+                    }
+                }
+                if(checkrank<9)//로티플도, 스티플도 아님
+                {
+                    checkrank=6;//그럼 걍 플러시.
+                }
+            }
+
+        }
+        for(var i=0;i<=12;i++)// 플러시가 없을때 손패계산
+        {
+            if(cardcounting[i]===4)//한카드가 4장 포카드.
+            {
+                checkrank=8;
+            }
+            if(cardcounting[i]===3)//한카드가 3장. 최소 풀하우스.
+            {
+                for(var j=0;j<=12;j++)
+                {
+                    if(i!=j)
+                    {
+                        if(cardcounting[j]===2)//한카드가 3장인데 다른 카드가 2장. 풀하우스.
+                        {
+                            checkrank=7;
+                        }
+                    }
+                }
+                if(checkrank<4)
+                {
+                    checkrank=4;
+                }
+            }
+            if(cardcounting[j]===1&&cardcounting[(j+1)%13]===1&&cardcounting[(j+2)%13]===1&&cardcounting[(j+3)%13]===1&&cardcounting[(j+4)%13]===1)//스트레이트인지 확인.
+            {
+                if(checkrank<5)//스트레이트
+                {
+                    checkrank=5;
+                }
+            }
+            if(cardcounting[i]===2)//한 카드가 2장. 페어가 있음.
+            {
+                for(var j=0;j<=12;j++)
+                {
+                    if(j!=i)
+                    {
+                        if(cardcounting[j]===2)
+                        {
+                            if(checkrank<3)
+                            {
+                                checkrank=3;
+                            }
+                        }
+                    }
+                }
+                if(checkrank<2)
+                {
+                    checkrank=2;
+                }
+            }
+        }
+        if(checkrank<1)
+        {
+            checkrank=1;
+        }
+
+        return checkrank;
+    }
     function visibleButton(){
-        for(var i=0;i<5;i++)
+     /*   for(var i=0;i<5;i++)
         {
             var temp = document.getElementById("Card"+(i+1));
             temp.style.display='inline';
+        }*/
+        var button = document.getElementsByClassName("cardSwap");
+        for(var i=0;i<button.length;i++)
+        {
+            var temp=button.item(i);
+            temp.style.display='inline';
+        }
+    }
+    function ViewRank(key, cardrank)
+    {
+        if(cardrank===10)
+        {
+            document.getElementById(key).innerHTML="로얄 스트레이트 플러시.";
+        }
+        if(cardrank===9)
+        {
+            document.getElementById(key).innerHTML="스트레이트 플러시.";
+        }
+        if(cardrank===8)
+        {
+            document.getElementById(key).innerHTML="포카드.";
+        }
+        if(cardrank===7)
+        {
+            document.getElementById(key).innerHTML="풀하우스.";
+        }
+        if(cardrank===6)
+        {
+            document.getElementById(key).innerHTML="플러시.";
+        }
+        if(cardrank===5)
+        {
+            document.getElementById(key).innerHTML="스트레이트.";
+        }
+        if(cardrank===4)
+        {
+            document.getElementById(key).innerHTML="트리플.";
+        }
+        if(cardrank===3)
+        {
+            document.getElementById(key).innerHTML="투 페어.";
+        }
+        if(cardrank===2)
+        {
+            document.getElementById(key).innerHTML="원 페어.";
+        }
+        if(cardrank===1)
+        {
+            document.getElementById(key).innerHTML="탑.";
         }
     }
 
