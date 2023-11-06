@@ -1,20 +1,74 @@
 <!doctype html>
 <html>
 <head>
-<title>메인메뉴</title>
+<title>미니게임 홈페이지</title><link rel="icon" href="./image/favicon.png">
 <meta charset="utf-8">
 <style>
+    h1{
+        font-size: 30px;
+        text-align: center;
+        border-bottom:2px solid gray;
+        margin:0;
+    }
+    ul{
+        width: 200px;
+        height:1fr;
+        margin:0;
+        padding:20px;
+    }
+    a{
+        text-decoration: none;
+    }
     .lists{
         background-color: black;
+        color:white;
+        
+    }
+    
+    div{
+        border:1px solid gray;
+    }
+    #grid{
+        border: 1px solid gray;
+        display:grid;
+        grid-template-columns: 250px 1fr;
+    }
+    img{
+        display:block;
+        margin:auto;
+    }
+    html{
+        background-image: url("./image/5.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        opacity: 1;
+    }
+    p{
         color:white;
     }
 </style>
 </head>
 <body>
-<ul><a class="lists" href="typing.html">타자 연습 하러 가기</a></ul>
-<ul><a class="lists" href="poker.html">컴퓨터와 포커 하러 가기</a></ul>
-<ul><a class="lists" href="dodge.html">탄막 피하기 게임 하러 가기</a></ul>
-<ul><a class="lists" href="snakeGame.html">스네이크 게임 하러 가기</a></ul>
+    
+    <h1><a href="index.html" title="홈페이지로 이동">홈페이지</a></h1>
+<div id="grid">
+    <div>
+        <ul>
+            <li><a class="lists" href="typing.html" target="_blank">타자 연습 하러 가기</a></li>
+            <br>
+            <li><a class="lists" href="poker.html"target="_blank">컴퓨터와 포커 하러 가기</a></li>
+            <br>
+            <li><a class="lists" href="dodge.html"target="_blank">탄막 피하기 게임 하러 가기</a></li>
+            <br>
+            <li><a class="lists" href="snakeGame.html"target="_blank">스네이크 게임 하러 가기</a></li>
+            <br>
+        </ul>
+    </div>
+    <div>
+        <p><img src="./image/main.png" width="700px" height="700px" ></p>
+        <p> 간단한 미니게임을 즐겨봅시다. 왼쪽의 목록에서 게임을 선택하여 게임 화면으로 이동하실 수 있습니다.</p>
+    </div>
+</div>
 </body>
 </html>
 

@@ -1,9 +1,39 @@
 <html>
     <head>
+      <title>닷지</title><link rel="icon" href="./image/favicon.png">
         <script src="https://cdn.jsdelivr.net/npm/p5@1.8.0/lib/p5.min.js"></script>
     </head>
+    <style>
+    div{
+        text-align: center;
+    }
+    #grid{
+        display:grid;
+        grid-template-columns: 150px 1fr 1fr 1fr;
+    }
+    body{
+            height : 98%;
+        width : 98%;
+        background-image: url("./image/5.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        opacity: 1;
+          }
+          a{
+        text-decoration: none;
+    }
+    a{
+        text-decoration: none;
+        color:white;
+    }
+    </style>
     <body>
-
+      <div id="grid">
+        <div><a href="index.html" style="font-size: 30;">홈 페이지</a></div>
+        <div><a href="poker.html">포커하러 가기</a></div>
+        <div><a href="typing.html">타자연습 하러가기</a></div>
+        <div><a href="snakeGame.html">스네이크 게임 하러가기</a></div>
+        </div>
     </body>
     <script>
  var circle_Rad = 10;
@@ -36,7 +66,7 @@ var sound_flag=0;
       sound_bgm.loop=true;
       sound_bgm.volume=1;
       sound_bgm.play();
-      canvas_X=500;
+      canvas_X=1000;
       canvas_Y=1000;
      player_X=canvas_X/2;
      player_Y=canvas_Y/2;
@@ -51,13 +81,16 @@ var sound_flag=0;
          {
            bullet_array.push(new bullet());
          }
-
-
-         //sound_damaged=loadSound('./sound/damaged.mp3');
-         //sound_gameover=loadSound('./sound/gameover.wav');
-
     fill(255);
-     text("아무 키나 누르면 시작합니다.",canvas_X/2-75,canvas_Y/2);
+    textSize(30)
+    text("닷 지",canvas_X/2-35,canvas_Y/2-50);
+    textSize(20);
+
+     text("아무 키나 누르면 시작합니다.",canvas_X/2-125,canvas_Y/2-20);
+     textSize(15);
+     text("이동 : 키보드 방향키",canvas_X/2-75,canvas_Y/2);
+     text("날아오는 총알을 피하세요! 총알의 갯수가 곧 점수입니다.",canvas_X/2-200,canvas_Y/2+20);
+     text("게임을 시작하면 배경음악이 재생됩니다.",canvas_X/2-130,canvas_Y/2+40);
     }
     function draw()
     {
@@ -157,7 +190,7 @@ var sound_flag=0;
 
         this.rand=Math.floor(Math.random()*4);
         this.isCollision=false;
-        this.speed=Math.floor(Math.random()*18+1);
+        this.speed=Math.floor(Math.random()*2+1);
         if(this.rand==0)//위쪽에서 튀어나올 예정
           {
             this.y=-10;
@@ -193,14 +226,13 @@ var sound_flag=0;
       move()
         {
           circle(this.x,this.y,5);
-            this.x=this.x+this.dir_X;
-            this.y=this.y+this.dir_Y;
+            this.x=this.x+this.dir_X*this.speed;
+            this.y=this.y+this.dir_Y*this.speed;
           if(this.x>player_X&&this.x<player_X+player_size)
             {
               if(this.y>player_Y&&this.y<player_Y+player_size)//플레이어와 충돌시
                 {
                   this.isCollision=true;
-                 // sound_damaged.play();
                   if(this.isCollision)
                   {
                     life=life-1;

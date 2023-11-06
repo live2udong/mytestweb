@@ -1,24 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>컴퓨터와 포커</title><link rel="icon" href="./image/favicon.png">
 <meta charset="UTF-8">
 <style>
     img{
         width: 100px;
         height: 138px;
     }
-    #test1{
-        display : block;
-    }
     .cardSwap{
         display : none;
         flex : 1;
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     }
+    #grid{
+        display:grid;
+        grid-template-columns: 150px 1fr 1fr 1fr;
+    }   
+    a{
+        text-decoration: none;
+        color:white;
+    }
+    body{
+        height : 100vh;
+        width : 99%;
+        background-image: url("./image/5.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        opacity: 1;
+          }
+          div{
+            color:white;
+          }
 </style>
 </head>
 <body>
-
+    <div id="grid">
+        <div><a href="index.html" style="font-size: 30;">홈 페이지</a></div>
+        <div><a href="typing.html">타자연습 하러가기</a></div>
+        <div><a href="dodge.html">닷지 하러가기</a></div>
+        <div><a href="snakeGame.html">스네이크 게임 하러가기</a></div>
+    </div>
     <img class ="card" id="ComputerCard1" src="./image/trump/Back.PNG">
     <img class ="card" id="ComputerCard2" src="./image/trump/Back.PNG">
     <img class ="card" id="ComputerCard3" src="./image/trump/Back.PNG">
@@ -30,7 +52,7 @@
     <img class ="card" id="PlayerCard3" src="./image/trump/Back.PNG">
     <img class ="card" id="PlayerCard4" src="./image/trump/Back.PNG">
     <img class ="card" id="PlayerCard5" src="./image/trump/Back.PNG">
-    <button onclick="run()" id="cardOpen">카드깡</button>
+    <button onclick="run()" id="cardOpen">카드 분배</button>
     <br>
 
     <button class="cardSwap" id="Card1">1번 카드 선택</button>
@@ -40,8 +62,8 @@
     <button class="cardSwap" id="Card5">5번 카드 선택</button>
     <button class="cardSwap" id="Swaping" onclick="swap()">결정</button>
 
-    <div id="chat">ㅎㅇㅎㅇ이거보임?</div>
-    <div id="chat2">ㅎㅇㅎㅇ이거보임?</div>
+    <div id="chat">카드 분배 버튼을 눌러 카드를 받으세요!</div>
+    <div id="chat2"></div>
     <div id="chat3"></div>
 </body>
 <script>

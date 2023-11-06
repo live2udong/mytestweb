@@ -1,9 +1,33 @@
 <html>
     <head>
+      <title>스네이크 게임</title><link rel="icon" href="./image/favicon.png">
         <script src="https://cdn.jsdelivr.net/npm/p5@1.8.0/lib/p5.min.js"></script>
+        <style>
+          #grid{
+          display:grid;
+        grid-template-columns: 150px 1fr 1fr 1fr;
+          }
+          body{
+            height : 98%;
+        width : 98%;
+        background-image: url("./image/6.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        opacity: 1;
+          }
+          a{
+        text-decoration: none;
+        color : white;
+    }
+          </style>
     </head>
     <body>
-
+      <div id="grid">
+        <div><a href="index.html" style="font-size: 30;">홈 페이지</a></div>
+        <div><a href="poker.html">포커하러 가기</a></div>
+        <div><a href="typing.html">타자연습 하러가기</a></div>
+        <div><a href="dodge.html">닷지 하러가기</a></div>
+        </div>
     </body>
     <script>
     
@@ -23,13 +47,25 @@ let xFruit = 0;
 let yFruit = 0;
 let scoreElem;
 
+var flag=0;
+
 function setup() {
   scoreElem = createDiv('Score = 0');
-  scoreElem.position(20, 20);
+  scoreElem.position(20, 50);
   scoreElem.id = 'score';
   scoreElem.style('color', 'white');
 
   createCanvas(500, 500);
+  background(50);
+  fill(255);
+  textSize(30);
+  text("스네이크 게임",160,200);
+  textSize(15);
+  text("뱀을 이동시켜서 먹이를 먹는 게임입니다.",110,220);
+  text("뱀은 먹이를 먹을수록 몸집이 커지는데",120,240);
+  text("자신의 몸에 부딪히면 게임 오버입니다.",120,260);
+  text("이동키는 i,j,k,l키 입니다.",160,280);
+  text("아무 키나 누르면 시작합니다.",150,300);
   frameRate(15);
   stroke(255);
   strokeWeight(10);
@@ -39,16 +75,19 @@ function setup() {
     xCor.push(xStart + i * diff);
     yCor.push(yStart);
   }
+
 }
 
 function draw() {
-  background(0);
+  if(flag==1)
+  {background(50);
   for (let i = 0; i < numSegments - 1; i++) {
     line(xCor[i], yCor[i], xCor[i + 1], yCor[i + 1]);
   }
   updateSnakeCoordinates();
   checkGameStatus();
   checkForFruit();
+}
 }
 
 /*
@@ -144,6 +183,10 @@ function updateFruitCoordinates() {
 }
 
 function keyPressed() {
+  if(flag==0)
+  {
+    flag=1;
+  }
   switch (keyCode) {
     case 74:
       if (direction !== 'right') {
