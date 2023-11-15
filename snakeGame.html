@@ -4,8 +4,10 @@
         <script src="https://cdn.jsdelivr.net/npm/p5@1.8.0/lib/p5.min.js"></script>
         <style>
           #grid{
-          display:grid;
-        grid-template-columns: 150px 1fr 1fr 1fr;
+            display:grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        border:solid gray 1px;
+        font-size:30px;
           }
           body{
             height : 98%;
@@ -18,12 +20,13 @@
           a{
         text-decoration: none;
         color : white;
+        font-weight: bold;
     }
           </style>
     </head>
     <body>
       <div id="grid">
-        <div><a href="index.html" style="font-size: 30;">홈 페이지</a></div>
+        <div><a href="index.html">홈 페이지</a></div>
         <div><a href="poker.html">포커하러 가기</a></div>
         <div><a href="typing.html">타자연습 하러가기</a></div>
         <div><a href="dodge.html">닷지 하러가기</a></div>

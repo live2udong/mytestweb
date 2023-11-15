@@ -9,7 +9,9 @@
     }
     #grid{
         display:grid;
-        grid-template-columns: 150px 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        border:solid gray 1px;
+        font-size:30px;
     }
     #grid2{
         display:grid;
@@ -25,12 +27,13 @@
           }
           a{
         text-decoration: none;
-        color:aquamarine
+        color:white;
+        font-weight: bold;
     }
         </style>
     <body>
         <div id="grid">
-            <div><a href="index.html" style="font-size: 30;">홈 페이지</a></div>
+            <div><a href="index.html" style="font-size: 30px;">홈 페이지</a></div>
             <div><a href="poker.html">포커하러 가기</a></div>
             <div><a href="dodge.html">닷지 하러가기</a></div>
             <div><a href="snakeGame.html">스네이크 게임 하러가기</a></div>
@@ -40,7 +43,7 @@
         <span id="timer"></span><br>
         <span id="timer2"></span>
         <span id="first_word"></span><br><span id="second_word"></span>
-        <span id="select_difficulty">난이도를 선택해주세용 : </span> <input class="selector" type="button" value="쉬움" onclick ="easymode()">  <input class="selector" type="button" value="중간" onclick ="normalmode()">  <input class="selector" type="button" value="어려움" onclick ="hardmode()"> 
+        <span id="select_difficulty">난이도를 선택해주세요 : </span> <input class="selector" type="button" value="쉬움" onclick ="easymode()">  <input class="selector" type="button" value="중간" onclick ="normalmode()">  <input class="selector" type="button" value="어려움" onclick ="hardmode()"> 
         <div id="t1" style="display: inline;"></div><br><div style="display: inline;" id="t2"></div>
         </div>
         <div>쉬움 : 2글자 이하의 단어만 나옵니다.<br>보통 : 2글자에서 3글자 사이의 단어가 나옵니다.<br>어려움 : 3글자 이상의 단어가 나옵니다.<br>※연습할 때 심심하실까봐 배경음악을 넣어보았습니다. 난이도를 선택하시면 재생됩니다.
