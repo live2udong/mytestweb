@@ -8,6 +8,7 @@
         grid-template-columns: 1fr 1fr 1fr 1fr;
         border:solid gray 1px;
         font-size:30px;
+        margin-bottom:10px;
           }
           body{
             height : 98%;
@@ -54,12 +55,12 @@ var flag=0;
 
 function setup() {
   scoreElem = createDiv('Score = 0');
-  scoreElem.position(20, 50);
+  scoreElem.position(20, 60);
   scoreElem.id = 'score';
   scoreElem.style('color', 'white');
 
   createCanvas(500, 500);
-  background(50);
+  background(30);
   fill(255);
   textSize(30);
   text("스네이크 게임",160,200);
