@@ -1,4 +1,4 @@
-#grid{
+nav{
     display:grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
       border:solid gray 1px;
@@ -10,15 +10,22 @@
     grid-template-columns: 1fr 1fr;
 }
   body{
-    height : 98%;
-    width : 98%;
+    height : 100%;
+    width : 100%;
     background-image: url("./image/5.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     opacity: 1;
+    overflow:hidden;
+}
+span{
+    color:white;
 }
 div{
-    color:white;
+  color:white;
+}
+article{
+  color:white;
 }
 a{
     text-decoration: none;

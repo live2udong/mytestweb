@@ -4,6 +4,9 @@ h1{
     border-bottom:2px solid gray;
     margin:0;
 }
+img{
+    padding:auto;
+}
 ul{
     width: 200px;
     height:1fr;
@@ -30,13 +33,23 @@ img{
     margin:auto;
 }
 html{
-    height : 100vh;
-    width : 99%;
+
+    height :100vh;
+    width : 100%;
     background-image: url("./image/6.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size:cover;
+    background-attachment: fixed;
     opacity: 1;
 }
 p{
     color:white;
+}
+nav{
+    text-align: center;
+    border-bottom:2px solid gray;
+}
+a{
+    padding-left: 15px;
+    padding-right: 15px;
 }

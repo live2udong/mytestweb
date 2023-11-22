@@ -1,19 +1,21 @@
 <html>
     <head>
       <title>닷지</title><link rel="icon" href="./image/favicon.png">
+      <meta charset="utf-8">
         <script src="https://cdn.jsdelivr.net/npm/p5@1.8.0/lib/p5.min.js"></script>
         <link rel="stylesheet" type="text/css" href="form_game.css">
     </head>
-    <style>
-    </style>
     <body>
-      <div id="grid">
-        <div><a href="index.html">홈 페이지</a></div>
-        <div><a href="poker.html">포커하러 가기</a></div>
-        <div><a href="typing.html">타자연습 하러가기</a></div>
-        <div><a href="snakeGame.html">스네이크 게임 하러가기</a></div>
-        </div>
+      <header id="grid">
+        <nav>
+          <div><a href="index.html">홈 페이지</a></div>
+          <div><a href="poker.html">포커하러 가기</a></div>
+          <div><a href="typing.html">타자연습 하러가기</a></div>
+          <div><a href="snakeGame.html">스네이크 게임 하러가기</a></div>
+        </nav>
+      </header>
     </body>
+    <main>
     <script>
  var circle_Rad = 10;
     var fr=60;
@@ -148,7 +150,7 @@ var sound_flag=0;
       fill(255);
     }
     class bullet{
-        constructor()//생성자긴한데, 여기서 복잡한걸 하긴 좀 그래서 클래스 변수만 만들어주기.
+        constructor()//생성자. 변수만 만들어주기.
         {
             this.x=0;//시작 X,Y좌표
             this.y=0;
@@ -237,4 +239,5 @@ var sound_flag=0;
       }
     }
     </script>
+    </main>
 </html>

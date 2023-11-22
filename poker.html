@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>컴퓨터와 포커</title><link rel="icon" href="./image/favicon.png">
+    <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="form_game.css">
-<meta charset="UTF-8">
 <style>
     img{
         width: 100px;
@@ -17,47 +17,49 @@
 </style>
 </head>
 <body>
-    <div id="grid">
-        <div><a href="index.html">홈 페이지</a></div>
-        <div><a href="typing.html">타자연습 하러가기</a></div>
-        <div><a href="dodge.html">닷지 하러가기</a></div>
-        <div><a href="snakeGame.html">스네이크 게임 하러가기</a></div>
-    </div>
-    <div id="grid2">
-        <div>
-    <img class ="card" id="ComputerCard1" src="./image/trump/Back.PNG">
-    <img class ="card" id="ComputerCard2" src="./image/trump/Back.PNG">
-    <img class ="card" id="ComputerCard3" src="./image/trump/Back.PNG">
-    <img class ="card" id="ComputerCard4" src="./image/trump/Back.PNG">
-    <img class ="card" id="ComputerCard5" src="./image/trump/Back.PNG">
-    <br>
-    <img class ="card" id="PlayerCard1" src="./image/trump/Back.PNG">
-    <img class ="card" id="PlayerCard2" src="./image/trump/Back.PNG">
-    <img class ="card" id="PlayerCard3" src="./image/trump/Back.PNG">
-    <img class ="card" id="PlayerCard4" src="./image/trump/Back.PNG">
-    <img class ="card" id="PlayerCard5" src="./image/trump/Back.PNG">
-    <button onclick="run()" id="cardOpen">카드 분배</button>
-    <br>
+    <header>
+        <nav>
+            <div><a href="index.html">홈 페이지</a></div>
+            <div><a href="typing.html">타자연습 하러가기</a></div>
+            <div><a href="dodge.html">닷지 하러가기</a></div>
+            <div><a href="snakeGame.html">스네이크 게임 하러가기</a></div>
+        </nav>
+    </header>
+    <main id="grid2">
+        <article>
+            <img class ="card" id="ComputerCard1" src="./image/trump/Back.PNG">
+            <img class ="card" id="ComputerCard2" src="./image/trump/Back.PNG">
+            <img class ="card" id="ComputerCard3" src="./image/trump/Back.PNG">
+            <img class ="card" id="ComputerCard4" src="./image/trump/Back.PNG">
+            <img class ="card" id="ComputerCard5" src="./image/trump/Back.PNG">
+            <br>
+            <img class ="card" id="PlayerCard1" src="./image/trump/Back.PNG">
+            <img class ="card" id="PlayerCard2" src="./image/trump/Back.PNG">
+            <img class ="card" id="PlayerCard3" src="./image/trump/Back.PNG">
+            <img class ="card" id="PlayerCard4" src="./image/trump/Back.PNG">
+            <img class ="card" id="PlayerCard5" src="./image/trump/Back.PNG">
+            <button onclick="run()" id="cardOpen">카드 분배</button>
+            <br>
 
-    <button class="cardSwap" id="Card1">1번 카드 선택</button>
-    <button class="cardSwap" id="Card2">2번 카드 선택</button>
-    <button class="cardSwap" id="Card3">3번 카드 선택</button>
-    <button class="cardSwap" id="Card4">4번 카드 선택</button>
-    <button class="cardSwap" id="Card5">5번 카드 선택</button>
-    <button class="cardSwap" id="Swaping" onclick="swap()">결정</button>
-    <div id="chat"></div>
-    <div id="chat2"></div>
-    <div id="chat3"></div>
-        </div>
-        <div>
-            카드 분배 버튼을 눌러 카드를 받으세요!<br>
+            <button class="cardSwap" id="Card1">1번 카드 선택</button>
+            <button class="cardSwap" id="Card2">2번 카드 선택</button>
+            <button class="cardSwap" id="Card3">3번 카드 선택</button>
+            <button class="cardSwap" id="Card4">4번 카드 선택</button>
+            <button class="cardSwap" id="Card5">5번 카드 선택</button>
+            <button class="cardSwap" id="Swaping" onclick="swap()">결정</button>
+            <div id="chat"></div>
+            <div id="chat2"></div>
+            <div id="chat3"></div>
+        </article>
+    <article>
+            <p>카드 분배 버튼을 눌러 카드를 받으세요!<br>
             카드를 받은 후, 카드 선택 버튼을 눌러 교체할 카드를 선택할 수 있습니다.<br>
             교체하실 카드를 결정하셨으면 결정 버튼을 눌러 컴퓨터의 패를 확인하세요.<br>
             카드의 족보는 탑이 제일 등급이 낮고, 원 페어, 투 페어, 트리플, 스트레이트, 플러쉬, 풀하우스, 포카드, 스트레이트 플러쉬, 로얄 스트레이트 플러쉬 순으로 높은 등급의 패입니다.
             백 스트레이트, 마운틴은 스트레이트로 취급합니다.<br>
-            자신의 패가 등급이 더 높다면 승리하고, 그렇지 않다면 패배합니다. 상대방과 같은 등급의 족보가 나왔을 때는 무승부로 처리합니다.<br>
-    </div>
-    </div>
+            자신의 패가 등급이 더 높다면 승리하고, 그렇지 않다면 패배합니다. 상대방과 같은 등급의 족보가 나왔을 때는 무승부로 처리합니다.<br></p>
+    </article>
+</main>
 </body>
 <script>
     var PlayerCard = [{"set":-1,"number":-1},{"set":-1,"number":-1},{"set":-1,"number":-1},{"set":-1,"number":-1},{"set":-1,"number":-1}];//플레이어가 뽑은 카드
@@ -356,11 +358,6 @@
         return checkrank;
     }
     function visibleButton(){
-     /*   for(var i=0;i<5;i++)
-        {
-            var temp = document.getElementById("Card"+(i+1));
-            temp.style.display='inline';
-        }*/
         var button = document.getElementsByClassName("cardSwap");
         for(var i=0;i<button.length;i++)
         {

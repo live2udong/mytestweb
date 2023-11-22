@@ -2,31 +2,36 @@
 <html>
     <head>
         <title>미니 타자 연습</title><link rel="icon" href="./image/favicon.png">
+        <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="form_game.css">
     </head>
     <body>
-        <div id="grid">
-            <div><a href="index.html" style="font-size: 30px;">홈 페이지</a></div>
-            <div><a href="poker.html">포커하러 가기</a></div>
-            <div><a href="dodge.html">닷지 하러가기</a></div>
-            <div><a href="snakeGame.html">스네이크 게임 하러가기</a></div>
-            </div>
-            <div id="grid2"><div style="text-align: center;">
-        <span id="score"></span><br><span id="replay" display="none"></span> <input type="text" id="input" style="width: 200px;height:50px;display:none;" placeholder="현재 단어를 입력하세요!" onkeyup="run()">
-        <span id="timer"></span><br>
-        <span id="timer2"></span>
-        <span id="first_word"></span><br><span id="second_word"></span>
-        <span id="select_difficulty">난이도를 선택해주세요 : </span> <input class="selector" type="button" value="쉬움" onclick ="easymode()">  <input class="selector" type="button" value="중간" onclick ="normalmode()">  <input class="selector" type="button" value="어려움" onclick ="hardmode()"> 
-        <div id="t1" style="display: inline;"></div><br><div style="display: inline;" id="t2"></div>
-        </div>
-        <div>쉬움 : 2글자 이하의 단어만 나옵니다.<br>
+        <header>
+            <nav>
+                <div><a href="index.html" style="font-size: 30px;">홈 페이지</a></div>
+                <div><a href="poker.html">포커하러 가기</a></div>
+                <div><a href="dodge.html">닷지 하러가기</a></div>
+                <div><a href="snakeGame.html">스네이크 게임 하러가기</a></div>
+            </nav>
+        </header>
+        <main id="grid2">
+            <article style="text-align: center;">
+                <span id="score"></span><br><span id="replay" display="none"></span> <input type="text" id="input" style="width: 200px;height:50px;display:none;" placeholder="현재 단어를 입력하세요!" onkeyup="run()">
+                <span id="timer"></span><br>
+                <span id="timer2"></span>
+                <span id="first_word"></span><br><span id="second_word"></span>
+                <span id="select_difficulty">난이도를 선택해주세요 : </span> <input class="selector" type="button" value="쉬움" onclick ="easymode()">  <input class="selector" type="button" value="중간" onclick ="normalmode()">  <input class="selector" type="button" value="어려움" onclick ="hardmode()"> 
+                <div id="t1" style="display: inline;"></div><br><div style="display: inline;" id="t2"></div>
+            </article>
+            <article>
+                <p>쉬움 : 2글자 이하의 단어만 나옵니다.<br>
             보통 : 2글자에서 3글자 사이의 단어가 나옵니다.<br>
             어려움 : 3글자 이상의 단어가 나옵니다.<br>
             난이도를 선택하신 후 등장하는 입력창에 현재 단어를 입력하시면 됩니다.<br>
             다음에 입력하실 단어는 다음 단어 칸을 통해 미리 확인하실 수 있습니다. 최대한 많은 점수를 얻어보세요!<br>
-            ※연습할 때 심심하실까봐 배경음악을 넣어보았습니다. 난이도를 선택하시면 재생됩니다.
-        </div>
-        </div>
+            ※연습할 때 심심하실까봐 배경음악을 넣어보았습니다. 난이도를 선택하시면 재생됩니다.</p>
+            </article>
+        </main>
     </body>
     <script>
         var word_2 =["기적","가람","감전","가방","갈증","갑옷","국립","기차","급속","꿀벌","꼬마","기쁨","값","감성","낙뢰","나비","노을","노동","냄비","눈물","느낌","나라","농담","낭만","나방","녹차","늑대","나름","단비","다롱","단도","단감","도둑","두릅","돼지","닦달","뒷태","달력","달빛","라임","로망","라면","라쿤","라떼","레고","로마","로키","리본","로망","로사","로션","마녀","마늘","무릎","목숨","막공","무녀","묘지","맹세","뭉클","미안","백야","방구","부릅","봉쇄","북한","보강","부탁","박수","백수","버거","빙수","붕괴","부식","방전","성검","산성","사람","수렵","속죄","산성","생각","상상","속성","수필","숨결","순백","사과","송뢰","석영","이응","음해","악기","옹졸","원수","아들","옥좌","임금","응가","우유","앰플","주술","주식","족쇄","자립","직접","장기","재림","제설","중첩","죄질","자비","차표","춘추","초인","책사","체질","초췌","체리","참새","채무","추방","촛불","콧물","키위","쾌속","커피","카드","크림","쿠팡","케미","코털","쿼츠","킹덤","캥캥","트름","토끼","퇴물","탐욕","투박","타락","톱날","타짜","탐험","태산","털보","피망","포위","품위","파국","팥죽","패배","퓌레","피해","퐉스","파멸","하늘","흐름","홍수","확신","학대","항상","홍합","홍학","한글","한국","해커","허식"];
